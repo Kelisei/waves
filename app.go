@@ -5,6 +5,7 @@ import (
 	"app/views"
 	"fmt"
 	"log"
+	"mime"
 	"net/http"
 	"os"
 
@@ -36,6 +37,13 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", views.LandingPageView(store, db)).Methods("GET")
+
+	fileServer := http.FileServer(http.Dir("./static"))
+	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fileServer))
+
+	// Optionally, set MIME types explicitly
+	mime.AddExtensionType(".css", "text/css")
+
 	http.Handle("/", r)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
