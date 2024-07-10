@@ -51,3 +51,4 @@ func hashPassword(password string) (string, error) {
 	}
 	return string(hashedBytes), nil
 }
+

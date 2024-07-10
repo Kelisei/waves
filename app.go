@@ -35,7 +35,7 @@ func main() {
 	defer sqlDB.Close()
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", views.IndexHandler(store, db)).Methods("GET")
+	r.HandleFunc("/", views.LandingPageView(store, db)).Methods("GET")
 	http.Handle("/", r)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
