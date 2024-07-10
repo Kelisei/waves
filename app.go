@@ -45,5 +45,6 @@ func main() {
 	mime.AddExtensionType(".css", "text/css")
 
 	http.Handle("/", r)
+	fmt.Println("Server in http://localhost:8080/")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

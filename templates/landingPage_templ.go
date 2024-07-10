@@ -26,7 +26,7 @@ func LandingPage() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav></nav><div><h1 class=\"text-9xl\">Hello Bruv</h1></div><footer></footer>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav></nav><div><h1 class=\"text-7xl\">Hello Bruv</h1></div><footer></footer>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
