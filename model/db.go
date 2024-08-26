@@ -7,17 +7,25 @@ import (
 	"gorm.io/gorm"
 )
 
-// DB es la instancia global de la base de datos
 var DB *gorm.DB
 
-// InitDB inicializa la conexión a la base de datos
 func InitDB() {
 	var err error
 	DB, err = gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	if err != nil {
-		log.Fatal("failed to connect database")
+		log.Fatal("failed to connect database: ", err)
 	}
 
-	// Migrar los modelos (puedes añadir otros modelos aquí)
-	DB.AutoMigrate(&User{})
+	err = DB.AutoMigrate(
+		&User{},
+		&Artist{},
+		&Genre{},
+		&Audio{},
+		&Collection{},
+	)
+	if err != nil {
+		log.Fatal("failed to migrate database: ", err)
+	}
+
+	log.Println("Database connection and migration successful")
 }
